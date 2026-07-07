@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -9,6 +10,7 @@ function Header({ name, year }) {
     </header>
   );
 }
+
 const items = [
   "Macaroni and Cheese",
   "Salmon with Potatoes",
@@ -49,8 +51,14 @@ function Main({ dishes }) {
 }
 
 function App() {
+  const [status, setStatus] = useState('Open');
+  // here, setStatus is a function that updates status
+  // whatever I pass to useState is going to be the default or initial state whenever my application first loads
+
   return (
     <div>
+      <h1>The restaurant is currently {status}.</h1>
+      <button onClick={() => setStatus("Closed")}>Close restaurant</button>
       <Header name="Alex" year={new Date().getFullYear()} />
       <Main dishes={dishObjects} />
     </div>
